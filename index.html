@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Md Shojib Sardar - Web Designer, Graphic Designer, Digital Marketer & Ethical Hacker.">
+    <meta name="keywords" content="Web Design, Ethical Hacking, Cyber Security, Digital Marketing, Md Shojib Sardar">
+    <title>Md Shojib Sardar | Digital Architect & Security Expert</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --surface-color: #0a0f16;
+            --surface-glass: rgba(16, 24, 39, 0.7);
+            --primary-accent: #00f3ff; /* Neon Cyan */
+            --secondary-accent: #00ff41; /* Cyber Green */
+            --scary-red: #ff0000;
+            --text-main: #ffffff;
+            --text-muted: #a0aab5;
+            --font-display: 'Orbitron', sans-serif;
+            --font-tech: 'Rajdhani', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --gradient-main: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            --shadow-glow: 0 0 20px rgba(0, 243, 255, 0.3);
+            --border-glass: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Custom Cursor --- */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary-accent);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary-accent);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        body:hover .cursor-outline {
+            background-color: rgba(0, 243, 255, 0.1);
+        }
+
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-accent);
+            border-radius: 4px;
+        }
+
+        /* --- Loading Screen --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .loader-logo {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--primary-accent);
+            animation: glitch 1s infinite;
+        }
+
+        .enter-btn {
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--secondary-accent);
+            color: var(--secondary-accent);
+            font-family: var(--font-tech);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: none; /* Maintain custom cursor */
+        }
+
+        .enter-btn:hover {
+            background: var(--secondary-accent);
+            color: #000;
+            box-shadow: 0 0 30px var(--secondary-accent);
+        }
+
+        /* --- Scary Popup (New) --- */
+        .scary-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10001; /* Higher than loader */
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--scary-red);
+            font-family: var(--font-display);
+            animation: flicker 0.15s infinite;
+        }
+
+        .scary-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--scary-red);
+        }
+
+        .scary-text {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .scary-btn {
+            padding: 15px 40px;
+            background: var(--scary-red);
+            color: #000;
+            border: none;
+            font-family: var(--font-tech);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--scary-red);
+            animation: shake 0.5s infinite;
+        }
+
+        .scary-btn:hover {
+            background: #fff;
+            color: var(--scary-red);
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.8);
+            border-bottom: var(--border-glass);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+        .logo span { color: var(--primary-accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--font-tech);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- Global Controls (Audio) --- */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--primary-accent);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary-accent);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10%;
+            overflow: hidden;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1.hero-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-tech);
+            font-size: 1.5rem;
+            color: var(--secondary-accent);
+            margin-bottom: 40px;
+            min-height: 1.6em;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--primary-accent);
+            color: #000;
+            border: none;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--secondary-accent);
+            color: var(--secondary-accent);
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        /* --- Section General --- */
+        section {
+            padding: 100px 10%;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-line {
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-main);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- About --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--primary-accent);
+        }
+        
+        .about-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--secondary-accent);
+            z-index: -1;
+        }
+
+        .about-img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%) contrast(1.2);
+            transition: 0.5s;
+        }
+
+        .about-img-wrapper:hover .about-img {
+            filter: grayscale(0%);
+        }
+
+        .about-text h3 {
+            font-family: var(--font-tech);
+            font-size: 2rem;
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item h4 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--text-main);
+        }
+        .stat-item span {
+            color: var(--secondary-accent);
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+        }
+
+        /* --- Services (3D Tilt Cards) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--surface-glass);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: var(--border-glass);
+            text-align: center;
+            transition: transform 0.1s; /* Fast for tilt */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            box-shadow: var(--shadow-glow);
+            border-color: var(--primary-accent);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-display);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Skills --- */
+        .skills-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-family: var(--font-tech);
+            font-weight: 600;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-main);
+            width: 0; /* Animated via JS */
+            transition: width 1.5s ease-out;
+            box-shadow: 0 0 10px var(--primary-accent);
+        }
+
+        /* --- Portfolio --- */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-main);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: var(--font-tech);
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-accent);
+            color: #000;
+            border-color: var(--primary-accent);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 16, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-item:hover img { transform: scale(1.1); }
+
+        /* --- Testimonials --- */
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface-glass);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: var(--border-glass);
+        }
+
+        .testimonial-content p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .client-info h5 {
+            color: var(--secondary-accent);
+            font-family: var(--font-display);
+        }
+
+        /* --- Contact --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--surface-glass);
+            padding: 50px;
+            border-radius: 20px;
+            border: var(--border-glass);
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-display);
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .info-item i {
+            color: var(--secondary-accent);
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-accent);
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 10px 0;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-bottom-color: var(--secondary-accent);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: var(--text-muted);
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .form-control:focus + .form-label,
+        .form-control:valid + .form-label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: var(--secondary-accent);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #000;
+            padding: 30px;
+            text-align: center;
+            border-top: var(--border-glass);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+        }
+
+        /* --- Animation Classes --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            h1.hero-title { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            h1.hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .btn-group { flex-direction: column; }
+            .stats { flex-wrap: wrap; }
+            .scary-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Scary Popup (New) -->
+    <div id="scaryPopup" class="scary-popup">
+        <i class="fas fa-skull-crossbones scary-icon"></i>
+        <div class="scary-text">Hello, I am Sojib Sardar.<br>Welcome to my Darkweb World.<br>So Lets Go and see who am i!!!</div>
+        <button class="scary-btn" id="scaryEnterBtn">I AM READY</button>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-logo">👑🔥 ꧁༒☬ SHOJIB SARDAR ON FIRE ☬༒꧂ 🔥👑</div>
+        <button class="enter-btn" id="enterBtn">Go and see My Hacking World</button>
+    </div>
+
+    <!-- Audio Controls -->
+    <div class="controls">
+        <button class="control-btn" id="voiceToggle" title="Toggle Voice Intro"><i class="fas fa-volume-up"></i></button>
+        <button class="control-btn" id="musicToggle" title="Toggle Ambient Music"><i class="fas fa-music"></i></button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">MD <span>SHOJIB SARDAR</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title glitch-wrapper" data-text="Md Shojib Sardar">Md Shojib Sardar</h1>
+            <div class="hero-subtitle" id="typing-text"></div>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary" id="hireMeBtn">Hire Me</a>
+                <a href="#portfolio" class="btn btn-secondary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-img-wrapper reveal">
+                <!-- Using picsum for placeholder, specific seed for consistency -->
+                <img src="https://i.postimg.cc/05fmSK0g/1745339138402.jpg" alt="Md Shojib Sardar" class="about-img">
+            </div>
+            <div class="about-text reveal">
+                <h3>Digital Architect & Security Specialist</h3>
+                <p>I am a multi-disciplinary professional combining artistic creativity with technical precision. As a Web Designer and Graphic Designer, I build visually stunning experiences. As an Ethical Hacker and Digital Marketer, I ensure those experiences are secure and reach the right audience.</p>
+                <p>My approach focuses on high-end aesthetics, user-centric performance, and bulletproof security standards. Whether building a modern interface or auditing a system for vulnerabilities, I deliver excellence.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <h4 data-target="30">0</h4>
+                        <span>Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4 data-target="20">0</h4>
+                        <span>Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4 data-target="4">0</h4>
+                        <span>Years Exp.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header reveal">
+            <h2 class="section-title">My Services</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal tilt-card">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h3>Web Design</h3>
+                <p>Custom HTML, CSS & Python solutions tailored to your brand with modern UI/UX principles.</p>
+            </div>
+            <div class="service-card reveal tilt-card">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Graphic Design</h3>
+                <p>Eye-catching visuals, logos, and brand identity packages that stand out in the digital crowd.</p>
+            </div>
+            <div class="service-card reveal tilt-card">
+                <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3>Digital Marketing</h3>
+                <p>Result-driven SEO, social media strategies, and campaigns to grow your business online.</p>
+            </div>
+            <div class="service-card reveal tilt-card">
+                <div class="service-icon"><i class="fas fa-user-secret"></i></div>
+                <h3>Ethical Hacking</h3>
+                <p>Penetration testing and security audits to protect your digital assets from cyber threats.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header reveal">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="skills-container">
+            <div class="skill-item reveal">
+                <div class="skill-info">
+                    <span>HTML / CSS</span>
+                    <span>95%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" data-width="95%"></div>
+                </div>
+            </div>
+            <div class="skill-item reveal">
+                <div class="skill-info">
+                    <span>Python</span>
+                    <span>85%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" data-width="85%"></div>
+                </div>
+            </div>
+            <div class="skill-item reveal">
+                <div class="skill-info">
+                    <span>UI/UX Design</span>
+                    <span>90%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" data-width="90%"></div>
+                </div>
+            </div>
+            <div class="skill-item reveal">
+                <div class="skill-info">
+                    <span>Cyber Security</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" data-width="80%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="section-header reveal">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="portfolio-filters reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Design</button>
+            <button class="filter-btn" data-filter="graphic">Graphic</button>
+            <button class="filter-btn" data-filter="security">Security</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="portfolio-item reveal" data-category="web">
+                <img src="https://i.postimg.cc/Gpx3fG23/b94ff4b0-1747-429a-837d-58346a30675b.png" alt="Web Project">
+                <div class="portfolio-overlay">
+                    <h4>Neon E-Commerce</h4>
+                    <p>Web Design</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="portfolio-item reveal" data-category="graphic">
+                <img src="https://i.postimg.cc/7LBPD7v4/Chat-GPT-Image-Jul-12-2025-04-27-49-PM.png" alt="Graphic Project">
+                <div class="portfolio-overlay">
+                    <h4>Brand Identity</h4>
+                    <p>Graphic Design</p>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="portfolio-item reveal" data-category="security">
+                <img src="https://i.postimg.cc/9QCc71CW/image.jpg" alt="Security Project">
+                <div class="portfolio-overlay">
+                    <h4>Penetration Test</h4>
+                    <p>Ethical Hacking</p>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="portfolio-item reveal" data-category="web">
+                <img src="https://i.postimg.cc/bvMX3RcB/1747389606335.jpg" alt="Web Project">
+                <div class="portfolio-overlay">
+                    <h4>Crypto Dashboard</h4>
+                    <p>Web Development</p>
+                </div>
+            </div>
+            <!-- Project 5 -->
+            <div class="portfolio-item reveal" data-category="graphic">
+                <img src="https://i.postimg.cc/ncxyRz5Y/IMG-20241122-WA0003.jpg" alt="Graphic Project">
+                <div class="portfolio-overlay">
+                    <h4>Cyber Poster</h4>
+                    <p>Graphic Design</p>
+                </div>
+            </div>
+            <!-- Project 6 -->
+            <div class="portfolio-item reveal" data-category="security">
+                <img src="https://i.postimg.cc/t4Y22GXB/Designer-(2)-out.jpg" alt="Security Project">
+                <div class="portfolio-overlay">
+                    <h4>Network Audit</h4>
+                    <p>Cyber Security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="section-header reveal">
+            <h2 class="section-title">Testimonials</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="testimonial-slider reveal">
+            <div class="testimonial-content">
+                <p>"Shojib transformed our online presence. His designs are futuristic and his security audit gave us peace of mind. A rare combination of creativity and technical skill."</p>
+                <div class="client-info">
+                    <h5>Alex Chen</h5>
+                    <span>CTO, TechNova Solutions</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header reveal">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="contact-container reveal">
+            <div class="contact-info">
+                <h3>Let's Secure Your Future</h3>
+                <p>Ready to start a project? Reach out for collaborations, web design, or security consultations.</p>
+                <br>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contact@shojib.com</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+8801945202678</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Dhaka, Bangladesh</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm" onsubmit="event.preventDefault(); showNotification();">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" required>
+                        <label class="form-label" for="name">Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" required>
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+					 <div class="form-group">
+                        <input type="tel" class="form-control" id="phone" required>
+                        <label class="form-label" for="phone">Phone</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                        <label class="form-label" for="message">Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">&copy; 2026 Md Shojib Sardar. All Rights Reserved. System Secure.</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--secondary-accent); color: #000; padding: 10px 20px; border-radius: 5px; opacity: 0; transition: 0.5s; pointer-events: none; font-weight: bold;">
+        Message Sent Successfully!
+    </div>
+
+    <script>
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.getElementById("cursor-dot");
+        const cursorOutline = document.getElementById("cursor-outline");
+
+        window.addEventListener("mousemove", (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight delay
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // --- Variables ---
+        const loader = document.getElementById("loader");
+        const enterBtn = document.getElementById("enterBtn");
+        const scaryPopup = document.getElementById("scaryPopup");
+        const scaryEnterBtn = document.getElementById("scaryEnterBtn");
+        let voiceEnabled = true;
+
+        // --- Scary Voice Function ---
+        function speakScary(text) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            const voices = window.speechSynthesis.getVoices();
+            const maleVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("Google US English")) || voices[0];
+            
+            if (maleVoice) utterance.voice = maleVoice;
+            
+            // Adjust for Scary Effect
+            utterance.pitch = 0.4; // Very low pitch
+            utterance.rate = 0.8; // Slower rate
+            utterance.volume = 1;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // --- Step 1: Click "Go and see My Hacking World" ---
+        enterBtn.addEventListener("click", () => {
+            // Show Scary Popup
+            scaryPopup.style.display = 'flex';
+            
+            // Speak Scary Text
+            speakScary("Hello, I am Sojib Sardar. Welcome to my Darkweb World. So Lets Go and see who am i!!!");
+        });
+
+        // --- Step 2: Click "I AM READY" in Scary Popup ---
+        scaryEnterBtn.addEventListener("click", () => {
+            // Hide Scary Popup
+            scaryPopup.style.display = 'none';
+            
+            // Continue with original loader animation
+            loader.style.opacity = "0";
+            setTimeout(() => {
+                loader.style.display = "none";
+                initSpeech(); // Trigger main voice
+                initTypeWriter(); // Start typing animation
+            }, 800);
+        });
+
+        // --- Web Speech API (Main Intro Voice) ---
+        function initSpeech() {
+            if (!voiceEnabled) return;
+
+            const text = "Md Shojib Sardar. Web Designer, Graphic Designer, Digital Marketer, Ethical Hacker. I build modern websites with HTML, CSS & Python, create eye-catching designs, and provide secure, result-driven digital solutions. Focused on quality, performance, and client satisfaction. Let’s grow and secure your business online.";
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            const voices = window.speechSynthesis.getVoices();
+            const maleVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("Google US English")) || voices[0];
+            
+            if (maleVoice) utterance.voice = maleVoice;
+            
+            // Normal settings
+            utterance.pitch = 0.8; 
+            utterance.rate = 1.1; 
+            utterance.volume = 1;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        document.getElementById('voiceToggle').addEventListener('click', function() {
+            if(window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                this.innerHTML = '<i class="fas fa"></i>';
+                voiceEnabled = false;
+            } else {
+                this.innerHTML = '<i class="fas fa"></i>';
+                voiceEnabled = true;
+                initSpeech();
+            }
+        });
+
+        // --- Music Toggle (Simulation) ---
+        let musicPlaying = false;
+        document.getElementById('musicToggle').addEventListener('click', function() {
+            musicPlaying = !musicPlaying;
+            if(musicPlaying) {
+                this.style.color = '#00ff41';
+                this.style.boxShadow = '0 0 15px #00ff41';
+            } else {
+                this.style.color = 'var(--primary-accent)';
+                this.style.boxShadow = 'none';
+            }
+        });
+
+        // --- Typing Animation ---
+        const typeText = document.getElementById('typing-text');
+        const words = ["Web Designer", "Graphic Designer", "Digital Marketer", "Ethical Hacker"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function initTypeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typeText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(initTypeWriter, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(initTypeWriter, 500);
+            } else {
+                setTimeout(initTypeWriter, isDeleting ? 50 : 100);
+            }
+        }
+
+        // --- Canvas Animation (Particles) ---
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() * 1.5) - 0.75;
+                this.speedY = (Math.random() * 1.5) - 0.75;
+                this.color = '#00f3ff';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initCanvas() {
+            particlesArray = [];
+            const numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${1 - distance/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initCanvas();
+        });
+
+        initCanvas();
+        animateCanvas();
+
+        // --- Scroll Animation (Observer) ---
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    if (entry.target.querySelector('.progress-bar-fill')) {
+                        const bar = entry.target.querySelector('.progress-bar-fill');
+                        bar.style.width = bar.getAttribute('data-width');
+                    }
+
+                    if (entry.target.querySelector('.stat-item h4')) {
+                        const counters = entry.target.querySelectorAll('h4[data-target]');
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const inc = target / 50; 
+                            let count = 0;
+                            const updateCount = () => {
+                                count += inc;
+                                if(count < target) {
+                                    counter.innerText = Math.ceil(count);
+                                    setTimeout(updateCount, 40);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            };
+                            updateCount();
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- 3D Tilt Effect for Cards ---
+        const tiltCards = document.querySelectorAll('.tilt-card');
+
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; 
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+            });
+        });
+
+        // --- Portfolio Filtering ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // --- Helper function to speak text (Normal Voice) ---
+        function speakText(textToSpeak) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(textToSpeak);
+            
+            const voices = window.speechSynthesis.getVoices();
+            const maleVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("Google US English")) || voices[0];
+            if (maleVoice) utterance.voice = maleVoice;
+            utterance.pitch = 0.8;
+            utterance.rate = 1.1;
+            utterance.volume = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // --- Hire Me Button Interaction ---
+        const hireMeBtn = document.getElementById('hireMeBtn');
+        hireMeBtn.addEventListener('click', (e) => {
+            setTimeout(() => {
+                speakText("I understand, you want to contact my owner. Please fill out this form and send it.");
+            }, 500);
+        });
+
+        // --- Form Notification ---
+        function showNotification() {
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            toast.style.bottom = '50px';
+            
+            speakText("Your message has been sent. My owner Sajib Sardar will contact you very soon");
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.bottom = '20px';
+            }, 3000);
+            document.getElementById('contactForm').reset();
+        }
+
+    </script>
+</body>
+</html>
